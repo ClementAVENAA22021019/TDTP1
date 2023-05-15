@@ -11,5 +11,5 @@ module com.example.tdtp1 {
     exports com.example.Partie2.Exercice3;
     exports com.example.Partie2.Exercice4;
     exports com.example.Partie2.Exercice5;
-    //exports com.example.Partie2.Exercice6;
+    exports com.example.Partie2.Exercice6;
 }

@@ -11,6 +11,23 @@ import javafx.stage.Stage;
 import java.util.Random;
 
 public class Ex2 extends Application {
+    public ImageView ChoisirImage() {
+        Random random = new Random();
+        int Chiffre = random.nextInt(3);
+        if (Chiffre == 0){
+            Image CImage = new Image(Ex2.class.getResource("Croix.png").toString());
+            ImageView Image = new ImageView(CImage);
+            return Image;
+        } else if (Chiffre == 1) {
+            Image CImage = new Image(Ex2.class.getResource("Rond.png").toString());
+            ImageView Image = new ImageView(CImage);
+            return Image;
+        }else {
+            Image CImage = new Image(Ex2.class.getResource("Vide.png").toString());
+            ImageView Image = new ImageView(CImage);
+            return Image;
+        }
+    }
     public void start(Stage primaryStage) throws Exception {
         //Grid et Cases
         GridPane GP = new GridPane();
@@ -25,15 +42,6 @@ public class Ex2 extends Application {
         Label i12 = new Label();
         Label i22 = new Label();
 
-        //Chargement images
-        Image CCroix = new Image(Ex2.class.getResource("Croix.png").toString());
-        Image CRond = new Image(Ex2.class.getResource("Rond.png").toString());
-        Image CVide = new Image(Ex2.class.getResource("Vide.png").toString());
-        ImageView Croix = new ImageView(CCroix);
-        ImageView Rond = new ImageView(CRond);
-        ImageView Vide = new ImageView(CVide);
-        ImageView Tab[] = {Croix, Rond, Vide};
-
         //Disposition des cases
         GP.add(i00, 0, 0);
         GP.add(i01, 0, 1);
@@ -47,15 +55,15 @@ public class Ex2 extends Application {
 
         //Application des images sur les cases
         Random random = new Random();
-        i00.setGraphic(Tab[random.nextInt(3)]);
-        i01.setGraphic(Tab[random.nextInt(3)]);
-        i02.setGraphic(Tab[random.nextInt(3)]);
-        i10.setGraphic(Tab[random.nextInt(3)]);
-        i20.setGraphic(Tab[random.nextInt(3)]);
-        i11.setGraphic(Tab[random.nextInt(3)]);
-        i21.setGraphic(Tab[random.nextInt(3)]);
-        i12.setGraphic(Tab[random.nextInt(3)]);
-        i22.setGraphic(Tab[random.nextInt(3)]);
+        i00.setGraphic(ChoisirImage());
+        i01.setGraphic(ChoisirImage());
+        i02.setGraphic(ChoisirImage());
+        i10.setGraphic(ChoisirImage());
+        i20.setGraphic(ChoisirImage());
+        i11.setGraphic(ChoisirImage());
+        i21.setGraphic(ChoisirImage());
+        i12.setGraphic(ChoisirImage());
+        i22.setGraphic(ChoisirImage());
 
         //Creation scene
         Scene scene = new Scene(GP);
