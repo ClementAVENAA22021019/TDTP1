@@ -54,7 +54,6 @@ public class Ex2 extends Application {
         GP.add(i22, 2, 2);
 
         //Application des images sur les cases
-        Random random = new Random();
         i00.setGraphic(ChoisirImage());
         i01.setGraphic(ChoisirImage());
         i02.setGraphic(ChoisirImage());
@@ -70,8 +69,6 @@ public class Ex2 extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.setTitle("TicTacToe");
-        primaryStage.setWidth(133);
-        primaryStage.setHeight(171);
         primaryStage.show();
     }
 }

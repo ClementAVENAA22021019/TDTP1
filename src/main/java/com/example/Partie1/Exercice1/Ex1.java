@@ -1,114 +1,104 @@
 package com.example.Partie1.Exercice1;
 
 import javafx.application.Application;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Ex1 extends Application{
+public class Ex1 extends Application {
+
     @Override
     public void start(Stage primaryStage) {
-        //Menu du haut
-        MenuItem FileItem1 = new MenuItem("New");
-        MenuItem FileItem2 = new MenuItem("Open");
-        MenuItem FileItem3 = new MenuItem("Save");
-        MenuItem FileItem4 = new MenuItem("Close");
-        Menu File = new Menu("File");
-        File.getItems().addAll(FileItem1, FileItem2, FileItem3, FileItem4);
+        BorderPane root = new BorderPane();
 
-        MenuItem EditItem1 = new MenuItem("Cut");
-        MenuItem EditItem2 = new MenuItem("Copy");
-        MenuItem EditItem3 = new MenuItem("Paste");
-        Menu Edit = new Menu("Edit");
-        Edit.getItems().addAll(EditItem1, EditItem2, EditItem3);
+        MenuBar menuBar = new MenuBar();
 
-        Menu Help = new Menu("Help");
-        MenuBar menuBar = new MenuBar(File, Edit, Help);
+        // create File menu
+        Menu fileMenu = new Menu("File");
+        MenuItem newItem = new MenuItem("New");
+        MenuItem openItem = new MenuItem("Open");
+        MenuItem saveItem = new MenuItem("Save");
+        MenuItem exitItem = new MenuItem("Exit");
+        fileMenu.getItems().addAll(newItem, openItem, saveItem, exitItem);
 
-        //Boutons Gauche
-        Label Txt = new Label();
-        Txt.setText("Boutons :");
-        Button B1 = new Button("Bouton 1");
-        Button B2 = new Button("Bouton 2");
-        Button B3 = new Button("Bouton 3");
-        Separator sep = new Separator(Orientation.VERTICAL);
+        // create Edit menu
+        Menu editMenu = new Menu("Edit");
+        MenuItem cutItem = new MenuItem("Cut");
+        MenuItem copyItem = new MenuItem("Copy");
+        MenuItem pasteItem = new MenuItem("Paste");
+        editMenu.getItems().addAll(cutItem, copyItem, pasteItem);
 
-        //Agencement boutons
-        VBox Gauche = new VBox();
-        Gauche.getChildren().addAll(Txt, B1, B2, B3);
-        Gauche.setAlignment( Pos.CENTER );
-        Gauche.setMargin( Txt, new Insets(0.0d, 0.0d, 10.0d, 0.0d) );
-        Gauche.setMargin( B1, new Insets(0.0d, 0.0d, 10.0d, 0.0d) );
-        Gauche.setMargin( B2, new Insets(0.0d, 0.0d, 10.0d, 0.0d) );
+        // add menus to menu bar
+        menuBar.getMenus().addAll(fileMenu, editMenu, new Menu("Help"));
 
-        //Menu de droite
-        VBox Droite = new VBox();
-        HBox MBoutonDroite = new HBox();
-        HBox CentrageDroite = new HBox();
-        VBox FormulaireDroite = new VBox();
-        GridPane GP = new GridPane();
-        Label LName = new Label("Name:");
-        Label LEmail = new Label("Email:");
-        Label LPassword = new Label("Password:");
-        TextField TName = new TextField();
-        TextField TEmail = new TextField();
-        TextField TPassword = new TextField();
-        Button Submit = new Button("Submit");
-        Button Cancel = new Button("Cancel");
+        // add menu bar to root pane
+        root.setTop(menuBar);
 
-        //Agencement des elements
-        GP.add(LName, 0, 0);
-        GP.add(LEmail, 0, 1);
-        GP.add(LPassword, 0, 2);
-        GP.add(TName, 1, 0);
-        GP.add(TEmail, 1, 1);
-        GP.add(TPassword, 1, 2);
-        GP.setMargin( LName, new Insets(0.0d, 10.0d, 10.0d, 0.0d) );
-        GP.setMargin( LEmail, new Insets(0.0d, 10.0d, 10.0d, 0.0d) );
-        GP.setMargin( LPassword, new Insets(0.0d, 10.0d, 10.0d, 0.0d) );
-        GP.setMargin( TName, new Insets(0.0d, 0.0d, 10.0d, 0.0d) );
-        GP.setMargin( TEmail, new Insets(0.0d, 0.0d, 10.0d, 0.0d) );
-        GP.setMargin( TPassword, new Insets(0.0d, 0.0d, 10.0d, 0.0d) );
-        MBoutonDroite.getChildren().addAll(Submit, Cancel);
-        MBoutonDroite.setMargin( Submit, new Insets(0.0d, 10.0d, 0.0d, 0.0d) );
+        // create left section with buttons
+        VBox leftBox = new VBox();
+        leftBox.setAlignment(Pos.CENTER);
+        leftBox.setSpacing(10);
 
-        //Centrage
-        FormulaireDroite.getChildren().addAll(GP, MBoutonDroite);
-        CentrageDroite.getChildren().addAll(FormulaireDroite);
-        CentrageDroite.setHgrow(FormulaireDroite, Priority.ALWAYS);
-        FormulaireDroite.setAlignment(Pos.CENTER);
-        Droite.getChildren().addAll(CentrageDroite);
-        Droite.setAlignment( Pos.CENTER );
+        Label buttonLabel = new Label("Boutons :");
+
+        Button button1 = new Button("Bouton 1");
+        Button button2 = new Button("Bouton 2");
+        Button button3 = new Button("Bouton 3");
+        leftBox.getChildren().addAll(buttonLabel,button1, button2, button3);
+
+        // add separator between left section and center section
+        root.setLeft(new HBox(leftBox, new Separator(Orientation.VERTICAL)));
+
+        // create center section with form
+        GridPane grilleFormulaire = new GridPane();
+        grilleFormulaire.setAlignment(Pos.CENTER);
+        grilleFormulaire.setHgap(10);
+        grilleFormulaire.setVgap(10);
+        grilleFormulaire.setPadding(new Insets(10));
+
+        grilleFormulaire.addRow(0, new Label("Name:"), new TextField());
+        grilleFormulaire.addRow(1, new Label("Email:"), new TextField());
+        grilleFormulaire.addRow(2, new Label("Password:"), new TextField());
+
+        HBox buttonBox = new HBox();
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setSpacing(10);
+
+        buttonBox.getChildren().addAll(new Button("Submit"), new Button("Cancel"));
+
+        grilleFormulaire.add(buttonBox, 0, 3, 2, 1);
+
+        root.setCenter(grilleFormulaire);
+
+        // create bottom section with status label
+        Label statusLabel = new Label("Ceci est un label de bas de page");
+        VBox bas = new VBox(new Separator(Orientation.HORIZONTAL),statusLabel);
+        bas.setAlignment(Pos.CENTER);
+        root.setBottom(bas);
 
 
-
-        //Bas de page
-        HBox BDP = new HBox();
-        Label BasDePage = new Label();
-        BasDePage.setText("Ceci est un label de bas de page");
-        BDP.setAlignment( Pos.CENTER );
-        BDP.getChildren().add(BasDePage);
-
-        //Fenetre
-        VBox Fenetre = new VBox();
-        HBox ConteneurMilieu = new HBox();
-        Gauche.setVgrow(ConteneurMilieu, Priority.ALWAYS);
-        Droite.setVgrow(ConteneurMilieu, Priority.ALWAYS);
-        ConteneurMilieu.getChildren().addAll(Gauche, sep, Droite);
-        Separator sep2 = new Separator(Orientation.HORIZONTAL);
-        Fenetre.getChildren().addAll(menuBar, ConteneurMilieu, sep2, BDP);
-
-        Scene scene = new Scene(Fenetre, 650, 400);
-
+        // set the scene
+        Scene scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Premier exemple en manipulant des conteneurs");
+        primaryStage.setTitle("Premier exemple manipulant les conteneurs");
         primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+
     }
 }

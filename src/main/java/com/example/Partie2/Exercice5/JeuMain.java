@@ -77,7 +77,7 @@ public class JeuMain extends Application {
 
             }
             if (j1.estEnCollision(j2))
-                System.out.println("Collision....");
+                System.exit(0);
         });
     }
 
