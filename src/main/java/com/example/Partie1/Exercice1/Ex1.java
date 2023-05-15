@@ -96,9 +96,4 @@ public class Ex1 extends Application {
         primaryStage.setTitle("Premier exemple manipulant les conteneurs");
         primaryStage.show();
     }
-
-    public static void main(String[] args) {
-        launch(args);
-
-    }
 }
